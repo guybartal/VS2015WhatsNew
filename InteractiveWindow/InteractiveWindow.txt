@@ -1,0 +1,45 @@
+List<int> myList = new List<int> { 3, 2, 7, 4, 9, 0 };
+mylist.Where(x => x % 2 == 0)
+
+------------------
+#help
+--------
+#cls
+-----
+#reset
+------------
+using System.Collections.Generic;
+List<int> mylist = new List<int> { 4, 7, 2, 5, 0, 6 };
+mylist
+  ===> List<int>(6) { 4, 7, 2, 5, 0, 6 }
+mylist.Where(x => x % 2 == 0)
+  ===> Enumerable.WhereListIterator<int> { 4, 2, 0, 6 }
+mylist.Average()
+------------
+http://stackoverflow.com/questions/16063520/how-do-you-create-an-asynchronous-method-in-c
+
+private static async Task<DateTime> CountToAsync(int num = 10)
+{
+  for (int i = 0; i < num; i++)
+  {
+    await Task.Delay(TimeSpan.FromSeconds(1));
+  }
+
+  return DateTime.Now;
+}
+
+await CountToAsync()
+----------------------------
+
+https://github.com/octokit/octokit.net
+
+#r "C:\Users\gubert\Source\Demos\VS2015\InteractiveWindow\Octokit.0.20.0\lib\net45\Octokit.dll" //local path to DLL on machine
+
+
+using Octokit;
+var client = new GitHubClient(new ProductHeaderValue("demo"));
+var pullrequests = await client.PullRequest.GetAllForRepository("dotnet", "roslyn");
+var query = pullrequests.Where(x => x.CreatedAt > DateTimeOffset.Now.Subtract(TimeSpan.FromDays(1)));
+foreach (var i in query) {
+     Console.WriteLine($"{i.CreatedAt:d} {i.CreatedAt:t} {i.Title} by {i.User.Login}");
+}

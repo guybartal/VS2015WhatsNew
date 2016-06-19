@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="utf-8" />
+    <title>SDP</title>
+    <link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="less/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>Welcome to SDP</h1>
+        </header>
+
+        <div class="jumbotron input-group">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-user"></i>
+            </span>
+
+            <input class="form-control" ng-model="text" />
+        </div>
+
+        <bloblockquote>{{text}}</bloblockquote>
+    </div>
+
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/react/react.js"></script>
+</body>
+</html>

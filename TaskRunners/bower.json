@@ -1,0 +1,9 @@
+{
+	"name": "SDP",
+	"private": true,
+  "dependencies": {
+    "bootstrap": "3.3.6",
+    "angular": "1.5.7",
+    "react": "15.1.0"
+  }
+}

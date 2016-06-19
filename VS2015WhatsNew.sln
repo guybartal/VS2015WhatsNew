@@ -5,6 +5,13 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VS2015WhatsNew", "VS2015WhatsNew\VS2015WhatsNew.csproj", "{3DD2F8A0-EF45-4FB0-AD58-F8EDBEB673C7}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TaskRunners", "TaskRunners\TaskRunners.xproj", "{AB019558-DAE2-4368-B48C-D85D8532AA50}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0731E738-B2D1-4923-9037-8B081324418B}"
+	ProjectSection(SolutionItems) = preProject
+		WE-Markdown.css = WE-Markdown.css
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{3DD2F8A0-EF45-4FB0-AD58-F8EDBEB673C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DD2F8A0-EF45-4FB0-AD58-F8EDBEB673C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DD2F8A0-EF45-4FB0-AD58-F8EDBEB673C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB019558-DAE2-4368-B48C-D85D8532AA50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB019558-DAE2-4368-B48C-D85D8532AA50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB019558-DAE2-4368-B48C-D85D8532AA50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB019558-DAE2-4368-B48C-D85D8532AA50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

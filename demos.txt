@@ -1,0 +1,193 @@
+Scroll Bar - Code Map
+======================================
+
+Formatting - show features in vs
+
+======================================
+fuzzy
+            using (Straem stream = new GetStream())
+            {
+
+            }
+
+======================================
+
+InteractiveWindow
+
+List<int> myList = new List<int> { 3, 2, 7, 4, 9, 0 };
+mylist.Where(x => x % 2 == 0)
+
+---------------------------------
+#help
+---------------------------------
+#cls
+---------------------------------
+#reset
+---------------------------------
+using System.Collections.Generic;
+List<int> mylist = new List<int> { 4, 7, 2, 5, 0, 6 };
+mylist
+  ===> List<int>(6) { 4, 7, 2, 5, 0, 6 }
+mylist.Where(x => x % 2 == 0)
+  ===> Enumerable.WhereListIterator<int> { 4, 2, 0, 6 }
+mylist.Average()
+------------
+http://stackoverflow.com/questions/16063520/how-do-you-create-an-asynchronous-method-in-c
+
+private static async Task<DateTime> CountToAsync(int num = 10)
+{
+  for (int i = 0; i < num; i++)
+  {
+    await Task.Delay(TimeSpan.FromSeconds(1));
+  }
+
+  return DateTime.Now;
+}
+
+await CountToAsync(5)
+--------------------------------------------------
+
+https://github.com/octokit/octokit.net
+
+#r "C:\Users\gubert\Source\Demos\VS2015\VS2015WhatsNew\InteractiveWindow\Octokit.0.20.0\lib\net45\Octokit.dll" //local path to DLL on machine
+
+using Octokit;
+var client = new GitHubClient(new ProductHeaderValue("demo"));
+var pullrequests = await client.PullRequest.GetAllForRepository("dotnet", "roslyn");
+var query = pullrequests.Where(x => x.CreatedAt > DateTimeOffset.Now.Subtract(TimeSpan.FromDays(1)));
+foreach (var i in query) {
+     Console.WriteLine($"{i.CreatedAt:d} {i.CreatedAt:t} {i.Title} by {i.User.Login}");
+}
+
+======================================
+
+Task Runners
+
+Create .core WebApplication
+Create new index.html
+<h1>Welcome to SDP</h1>
+
+--------------------------------------------------
+add new bower.json
+change name to SDP
+add bootstrap to dependencies and choose 3.3.6
+show how vs adds bower
+--------------------------------------------------
+install gulp with npm:
+add new npm configuration file (package.json)
+add new gulp configuration file
+add task for copy:
+gulp.task('copy', function () {
+    gulp.src("./wwwroot/lib/bootstrap/dist/**").pipe(gulp.dest("./wwwroot/js/bootstrap"));
+});
+--------------------------------------------------
+open index.html and add link to bootstrap
+
+<link href="js/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+add bootstrap container (show nice bootstrap icons appear):
+
+    <div class="container">
+        <header class="page-header">
+            <h1>Welcome to SDP</h1>
+        </header>
+    </div>
+
+add support for static files and default document (both in project.json and startup class)
+	
+	// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app)
+        {
+	    app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
+        }
+
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0-rc2-final"
+
+--------------------------------------------------
+
+i want to add some my own design (css) but i'm going to use less (css superset)
+create folder name "less"
+create variables.less
+@background: green;
+
+create site.less and demo intelisense for less variables and values:
+@import "variables.less";
+
+body {
+         background-color:@background;
+}
+
+but browser desn't understand less, 
+we need to compile it to css,
+i can use webessentials to do that,
+but it would work only for this machince, no CI support,
+so we use gulp!
+
+install gulp task in npm config file: 
+"devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-less": "3.1.0"
+  }
+
+add task for gulp-less in gulpfile.config
+
+var gulp = require('gulp'),
+    less = require('gulp-less');
+
+gulp.task('less', function () {
+    gulp.src("./wwwroot/less/site.less")
+        .pipe(less({ compress: true }))
+        .pipe(gulp.dest("./wwwroot/less"));
+});
+
+--------------------------------------------------
+
+add AfterBuild & ProjectOpened binding for "watch" so we won't need to run it every time
+
+--------------------------------------------------
+
+add "default" gulp task as a compound task
+gulp.task('default', ["copy", "less"]);
+
+and add "less" task for watch task:
+gulp.task("watch", ["less"], function () {
+    gulp.watch("./wwwroot/less/*.less", ["less"]);
+});
+
+--------------------------------------------------
+
+add angular using bower.json
+
+update copy task
+gulp.src("./wwwroot/lib/angular/angular*.{js,map}").pipe(gulp.dest("./wwwroot/js/angular"));
+
+add angular min script to index.html
+<script src="js/angular/angular.min.js"></script>
+
+--------------------------------------------------
+
+add <html ng-app> to bootstrap angular app
+
+add input controll with 
+
+        <div class="jumbotron input-group">
+            <input class="form-control" />
+        </div>
+
+add icon
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-user"></i>
+            </span>
+
+show icons in the intelisense
+we have support for font-awsone, foundation, ionic and more		
+
+--------------------------------------------------
+
+add _references.js to js folder and show update and autoupdate
