@@ -61,6 +61,17 @@ foreach (var i in query) {
 
 ======================================
 
+Debugging
+
+if (Debugger.IsAttached)
+{
+     Debugger.Break();
+}
+--------------------------------------
+Add breakpoint action on reverse string
+--------------------------------------
+Diagnostic Window - on MemLoad
+--------------------------------------
 Task Runners
 
 Create .core WebApplication
